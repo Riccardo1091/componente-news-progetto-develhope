@@ -28,23 +28,25 @@ export function News() {
     if (!data) return <div>loading...</div>
 
     return (
-        <div className="sm:w-full flex flex-col items-center lg:w-5/12 p-4 mx-auto my-7 h-[55rem] glass-component">
-            <div className="w-fit p-1 flex justify-center gap-2 fixed">
+        <div
+            className="w-full md:max-w-3xl 2xl:max-w-5xl max-w-5xl
+                flex flex-col items-center p-4 mx-auto my-7 h-[55rem] glass-component">
+            <div className="w-full pb-2 flex justify-center flex-wrap sm:flex-nowrap gap-2 static sm:fixed">
                 {testate && testate.map((testata, index) =>
-                <button key={index+testata} onClick={filtering} name={testata}>
+                <button key={index+testata} onClick={filtering} name={testata} className="p-2 text-[0.7rem] sm:text-base">
                     {testata.toUpperCase()}
                 </button>)}
             </div>
-            <div className='w-full mt-16 overflow-y-scroll h-[48rem]'>
+            <div className='w-full sm:mt-16 overflow-y-scroll h-[48rem]'>
                 {news && news.map((el, index) => 
                     <div key={index}>
                         <a className='w-full py-2 pr-3 flex items-start hover:opacity-80 hover:bg-white/50 rounded' rel="noreferrer" target="_blank" href={el.url}>
-                            <div className="px-2 py-1 min-w-[20%] w-1/5">
+                            <div className="px-2 py-1 min-w-[35%] w-2/6 sm:min-w-[20%] sm:w-1/5">
                                 <img src={el.thumbnail} alt={el.title}/>
                             </div>
                             <div>
-                                <h3 className='text-xl text-black font-bold leading-6'>{el.title}</h3>
-                                <p className='text-sm'>{el.subtitle && el.subtitle}</p>
+                                <h3 className='text-base leading-5 sm:text-lg sm:leading-6 text-black font-bold '>{el.title}</h3>
+                                <p className='text-[0.7rem] sm:text-sm'>{el.subtitle}</p>
                                 <p className='text-xs italic text-slate-800'>da {el.source}</p>
                             </div>
                         </a>
