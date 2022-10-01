@@ -2,45 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-body {font-family: Montserrat, sans-serif;background-image:url('./img/wallpaper.webp');background-repeat: no-repeat;background-attachment: fixed;background-size:cover;}
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: transparent;
-}
+*, *:hover {-webkit-transition:all 0.3s 0s ease;-moz-transition:all 0.3s 0s ease;-o-transition:all 0.3s 0s ease;transition:all 0.3s 0s ease;}
 
-::-webkit-scrollbar {
-    width: 6px;
-    background-color: transparent;
-}
+body {font-family:Montserrat, sans-serif;background-image:url('./img/wallpaper.webp');background-repeat:no-repeat;background-attachment:fixed;background-size:cover;}
 
-::-webkit-scrollbar-thumb {
-    background-color: #37373757;
-}
+::-webkit-scrollbar-track {-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);background-color:transparent;}
+::-webkit-scrollbar {width:6px;background-color:transparent;}
+::-webkit-scrollbar-thumb {background-color:#37373757;}
 
 .glass-component {
-    background: rgba(255, 255, 255, 0.28);
-    border-radius: 1rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    background:rgba(255, 255, 255, 0.28);
+    border-radius:1rem;
+    box-shadow:0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+    border:1px solid rgba(255, 255, 255, 0.6);
 }
 
 button {
-    display: inline-block;
-    padding: 10px 15px;
-    border: 0;
-    text-decoration: none;
-    border-radius: 5px;
-    background-color: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    color: rgba(26, 26, 26);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-  }
+    display:inline-block;
+    padding:10px 15px;
+    border:0;
+    text-decoration:none;
+    border-radius:5px;
+    background-color:rgba(255,255,255,0.2);
+    border:1px solid rgba(255,255,255,0.5);
+    backdrop-filter:blur(10px);
+    color:rgba(26, 26, 26);
+    font-size:1rem;
+    font-weight:500;
+    cursor:pointer;
+}
  
-  button:hover {
-    background-color: rgba(255,255,255,0.5);
-  }
+button:hover {background-color:rgba(255,255,255,0.5)}

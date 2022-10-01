@@ -27,12 +27,14 @@ newspapers.forEach(newspaper => {
                 $('.fvideogioco').each((i, el) => {
                     const thumbnail = $(el).find('img').attr('data-src')
                     const title = $(el).find('.testi_notizia a h2').text()
+                    const subtitle = $(el).find('.testi_notizia p').text()
                     const url = $(el).find('a').attr('href')
         
                     articles.push({
                         title,
+                        subtitle,
                         thumbnail,
-                        url: newspaper.base + url,
+                        url,
                         source: newspaper.name
                     })
                 })
@@ -41,10 +43,12 @@ newspapers.forEach(newspaper => {
                 $('div.media').each((i, el) => {
                     const thumbnail = $(el).find('figure img').attr('data-src')
                     const title = $(el).find('.media-body .media-heading').text().trim()
+                    const subtitle = $(el).find('.media-body > p').text()
                     const url = $(el).find('a').attr('href')
         
                     articles.push({
                         title,
+                        subtitle,
                         thumbnail,
                         url: newspaper.base + url,
                         source: newspaper.name
@@ -55,12 +59,14 @@ newspapers.forEach(newspaper => {
                 $('section .row .col-12 article').each((i, el) => {
                     const thumbnail = $(el).find('.img_background img').attr('data-src')
                     const title = $(el).find('.post_template_standard > div:last-of-type .post_template_standard_text a h4').text()
+                    const subtitle = $(el).find('.post_template_standard > div:last-of-type .post_template_standard_text .post_template_excerpt').text()
                     const url = $(el).find('.post_template_standard > div:last-of-type .post_template_standard_text a').attr('href')
         
                     articles.push({
                         title,
+                        subtitle,
                         thumbnail,
-                        url: newspaper.base + url,
+                        url,
                         source: newspaper.name
                     })
                 })
@@ -97,10 +103,12 @@ app.get('/news/:newspaperId', (req, res) => {
                 $('.fvideogioco').each((i, el) => {
                     const thumbnail = $(el).find('img').attr('data-src')
                     const title = $(el).find('.testi_notizia a h2').text()
+                    const subtitle = $(el).find('.testi_notizia p').text()
                     const url = $(el).find('a').attr('href')
         
-                    specificArticles.push({
+                    articles.push({
                         title,
+                        subtitle,
                         thumbnail,
                         url: newspaperBase + url,
                         source: newspaperId
@@ -111,10 +119,12 @@ app.get('/news/:newspaperId', (req, res) => {
                 $('div.media').each((i, el) => {
                     const thumbnail = $(el).find('figure img').attr('data-src')
                     const title = $(el).find('.media-body .media-heading').text().trim()
+                    const subtitle = $(el).find('.media-body > p').text()
                     const url = $(el).find('a').attr('href')
         
-                    specificArticles.push({
+                    articles.push({
                         title,
+                        subtitle,
                         thumbnail,
                         url: newspaperBase + url,
                         source: newspaperId
@@ -125,10 +135,12 @@ app.get('/news/:newspaperId', (req, res) => {
                 $('section .row .col-12 article').each((i, el) => {
                     const thumbnail = $(el).find('.img_background img').attr('data-src')
                     const title = $(el).find('.post_template_standard > div:last-of-type .post_template_standard_text a h4').text()
+                    const subtitle = $(el).find('.post_template_standard > div:last-of-type .post_template_standard_text .post_template_excerpt').text()
                     const url = $(el).find('.post_template_standard > div:last-of-type .post_template_standard_text a').attr('href')
         
-                    specificArticles.push({
+                    articles.push({
                         title,
+                        subtitle,
                         thumbnail,
                         url: newspaperBase + url,
                         source: newspaperId
