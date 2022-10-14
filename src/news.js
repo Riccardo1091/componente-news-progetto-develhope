@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import { UseFetch } from './UseFetch';
 
 export function News() {
     const [news, setNews] = useState([])
     const [testate, setTestate] = useState([])
-    const {data, error} = useSWR(`//localhost:8000/news`, fetcher, {
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
-        //revalidateOnMount: false
-    })
+    const {data, error} = UseFetch('//localhost:8000/news')
 
     useEffect(() => {
         // Caricare il risultato del fetch nello state
@@ -28,12 +22,10 @@ export function News() {
     if (!data) return <div>loading...</div>
 
     return (
-        <div
-            className="w-full md:max-w-3xl 2xl:max-w-5xl max-w-5xl
-                flex flex-col items-center p-4 mx-auto my-7 h-[55rem] glass-component">
+        <div className="w-full md:max-w-3xl 2xl:max-w-5xl max-w-5xl flex flex-col items-center my-7 h-[55rem] glass-component">
             <div className="w-full pb-2 flex justify-center flex-wrap sm:flex-nowrap gap-2 static sm:fixed">
                 {testate && testate.map((testata, index) =>
-                <button key={index+testata} onClick={filtering} name={testata} className="p-2 text-[0.7rem] sm:text-base">
+                <button key={index+testata} onClick={filtering} name={testata} className="btn">
                     {testata.toUpperCase()}
                 </button>)}
             </div>

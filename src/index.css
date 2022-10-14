@@ -4,33 +4,67 @@
 
 *, *:hover {-webkit-transition:all 0.3s 0s ease;-moz-transition:all 0.3s 0s ease;-o-transition:all 0.3s 0s ease;transition:all 0.3s 0s ease;}
 
-body {font-family:Montserrat, sans-serif;background-image:url('./img/wallpaper.webp');background-repeat:no-repeat;background-attachment:fixed;background-size:cover;}
-
 ::-webkit-scrollbar-track {-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);background-color:transparent;}
 ::-webkit-scrollbar {width:6px;background-color:transparent;}
 ::-webkit-scrollbar-thumb {background-color:#37373757;}
 
-.glass-component {
-    background:rgba(255, 255, 255, 0.28);
-    border-radius:1rem;
-    box-shadow:0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
-    border:1px solid rgba(255, 255, 255, 0.6);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-button {
-    display:inline-block;
-    border:0;
-    text-decoration:none;
-    border-radius:5px;
-    background-color:rgba(255,255,255,0.2);
-    border:1px solid rgba(255,255,255,0.5);
-    backdrop-filter:blur(10px);
-    color:rgba(26, 26, 26);
-    font-size:1rem;
-    font-weight:500;
-    cursor:pointer;
+html,
+body,
+#root,
+.bg {
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
- 
-button:hover {background-color:rgba(255,255,255,0.5)}
+
+.glass-component {
+  background: linear-gradient(
+    118.15deg,
+    rgba(255, 255, 255, 0.4) 17.42%,
+    rgba(255, 255, 255, 0.3) 68.14%
+  );
+  box-shadow: 0px 4px 24px -1px rgb(0 0 0 / 20%);
+  webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  padding: 1.5rem;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bg, body {
+  background: linear-gradient(180deg, #c3b5aa 0%, #504c54 100%);
+}
+
+@layer components {
+  .btn {
+    @apply bg-[#d4c8b8] h-fit hover:bg-[#F2EFE6] text-[#F4EEEF] font-semibold hover:text-[#5d5d5d] py-2 px-4 border rounded-md
+    active:ring-1 active:outline-none 
+    active:ring-[#d4c8b8] transition duration-[0.333s] ease-out;
+  }
+  .btn-sm {
+    @apply bg-[#d4c8b8] h-fit hover:bg-[#F2EFE6] text-[#F4EEEF] font-semibold hover:text-[#5d5d5d] border rounded-md
+    active:ring-1 active:outline-none px-1 py-0
+    active:ring-[#d4c8b8] transition duration-[0.333s] ease-out;
+  }
+
+  .glass-component {
+    @apply rounded-md;
+  }
+  .bg {
+  }
+}
+
+.no-backdrop {webkit-backdrop-filter:none;backdrop-filter:none;}

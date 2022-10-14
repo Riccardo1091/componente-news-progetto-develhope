@@ -75,7 +75,7 @@ newspapers.forEach(newspaper => {
 })
 
 app.get('/', (req, res) => {
-    res.json('Welcome to my Climate Change News API')
+    res.json('Api news base')
 })
 
 app.get('/news', (req, res) => {
@@ -151,5 +151,5 @@ app.get('/news/:newspaperId', (req, res) => {
     }).catch(e => console.log(e))
 })
 
-app.listen(PORT, () => console.log(`server running on PORT ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
 
