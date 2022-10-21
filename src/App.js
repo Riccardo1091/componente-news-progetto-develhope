@@ -1,5 +1,6 @@
 import { News } from "./News";
 import { YoutubeNews } from "./YoutubeNews";
+import { TestFetchStrapi } from "./TestFetchStrapi";
 //import { YoutubeNewsAlt } from "./YoutubeNewsAlt";
 
 export function App() {
@@ -7,6 +8,7 @@ export function App() {
     <div className="App flex gap-8 justify-center">
       <News />
       <YoutubeNews />
+      {/* <TestFetchStrapi /> */}
       {/* <YoutubeNewsAlt/> */}
     </div>
   );

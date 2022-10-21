@@ -1,30 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaWindowClose } from "react-icons/fa";
 
-export function Riga({ el }) {
-    const [showModal, setShowModal] = useState(false)
+export function Riga({ el, saved, getData }) {
+    const [modal, setModal] = useState(false)
+    const [isSaved, setIsSaved] = useState(false)
 
-    function show() {
-        setShowModal(true)
-    }
-
-    function close(e) {
+    function toggle(e) {
         e.stopPropagation()
-        setShowModal(false)
+        setModal(!modal)
     }
+
+    useEffect(() => {
+        setIsSaved(saved)
+    }, [saved]);
 
     return (
-        <div onClick={show}>
+        <div onClick={toggle}>
             <div className='w-full py-2 pr-3 flex items-start hover:opacity-80 hover:bg-white/50 rounded cursor-pointer'>
-                <div className="px-2 py-1 min-w-[35%] w-2/6 sm:min-w-[20%] sm:w-1/5">
+                <div className="p-2 sm:w-1/5 sm:min-w-[20%] md:w-1/4 md:min-w-[25%]">
                     <img src={el.snippet.thumbnails.medium.url} alt={el.snippet.title} />
                 </div>
-                <h3 className='text-base leading-5 sm:text-lg sm:leading-6 text-black font-bold'>{el.snippet.title}</h3>
+                <div className="p-1 flex items-start gap-1 flex-col">
+                    <h3 className='text-base leading-5 sm:text-lg sm:leading-6 font-bold'>{el.snippet.title}</h3>
+                    <p className='text-[0.7rem] sm:text-sm'>{el.snippet.description}</p>
+                    {!isSaved && <button onClick={e => getData(e, {
+                        Titolo: el.snippet.title,
+                        Descrizione: el.snippet.description,
+                        Url: el.snippet.thumbnails.medium.url,
+                        videoUrl: el.id.videoId,
+                        isSaved: true
+                    }, "POST")}
+                        className="btn mt-2">Salva</button>
+                    }
+                </div>
             </div>
-            {showModal &&
-                <div className="w-screen h-screen absolute top-0 left-0 content-center bg-black/[.5] flex items-center justify-center" onClick={close}>
-                    <div className="w-fit h-fit bg-white p-8">
-                        <FaWindowClose className="absolute right-2 top-2" onClick={close} />
+            {modal &&
+                <div className="w-full h-full rounded absolute top-0 left-0 content-center bg-black/[.5] flex items-center justify-center" onClick={toggle}>
+                    <div className="w-fit h-fit glass-component !p-8 relative">
+                        <FaWindowClose className="absolute right-0 top-0 p-1 w-8 h-8 cursor-pointer hover:opacity-50" onClick={toggle} />
                         <iframe width="560" height="315" src={`https://www.youtube.com/embed/${el.id.videoId}`} title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                         </iframe>

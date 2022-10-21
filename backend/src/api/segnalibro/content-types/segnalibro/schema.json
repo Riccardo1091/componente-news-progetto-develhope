@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "segnalibros",
+  "info": {
+    "singularName": "segnalibro",
+    "pluralName": "segnalibros",
+    "displayName": "Segnalibro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titolo": {
+      "type": "string"
+    },
+    "Descrizione": {
+      "type": "text"
+    },
+    "Url": {
+      "type": "string"
+    },
+    "isSaved": {
+      "type": "boolean"
+    },
+    "videoUrl": {
+      "type": "string"
+    }
+  }
+}
