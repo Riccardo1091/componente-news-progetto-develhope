@@ -23,7 +23,7 @@ export function News() {
 
     return (
         <div className="w-full md:max-w-3xl 2xl:max-w-5xl max-w-5xl flex flex-col items-center my-7 h-[55rem] glass-component">
-            <div className="w-full pb-2 flex justify-center flex-wrap sm:flex-nowrap gap-2 static sm:fixed">
+            <div className="w-full mb-4 flex justify-center flex-wrap sm:flex-nowrap gap-2 static sm:fixed">
                 {testate && testate.map(testata =>
                     <button key={testata} onClick={filtering} name={testata} className="btn">
                         {testata.toUpperCase()}
@@ -33,7 +33,7 @@ export function News() {
                 {news && news.map(el =>
                     <div key={el.title}>
                         <a className='w-full py-2 pr-3 flex items-start hover:opacity-80 hover:bg-white/50 rounded' rel="noreferrer" target="_blank" href={el.url}>
-                            <div className="p-2 sm:w-1/5 sm:min-w-[20%] md:w-1/4 md:min-w-[25%]">
+                            <div className="p-2 min-w-[180px] max-w-[180px] sm:w-1/5 sm:min-w-[20%] md:w-1/4 md:min-w-[25%]">
                                 <img className="img-fill" src={el.thumbnail} alt={el.title} />
                             </div>
                             <div className="p-1">

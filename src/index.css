@@ -13,10 +13,6 @@
   padding: 0;
   box-sizing: border-box;}
 
-::-webkit-scrollbar-track {-webkit-box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);background-color:transparent;}
-::-webkit-scrollbar {width:6px;background-color:transparent;}
-::-webkit-scrollbar-thumb {background-color:#37373757;}
-
 html,
 body,
 #root,
@@ -43,8 +39,9 @@ h1, h2, h3, h4, h5, p, button {color:#59545B}
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.bg, body {
+body {
   background: linear-gradient(180deg, #c3b5aa 0%, #504c54 100%);
+  background-attachment: fixed;
 }
 
 @layer components {

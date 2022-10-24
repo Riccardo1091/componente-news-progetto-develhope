@@ -12,6 +12,17 @@ export function YoutubeNews() {
     const [modal, setModal] = useState(false)
     const [segnalibri, setSegnalibri] = useState([])
 
+    // check if mobile
+    const [width, setWidth] = useState(window.innerWidth)
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth)
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange)
+        return () => { window.removeEventListener('resize', handleWindowSizeChange) }
+    }, []);
+    const isMobile = width <= 768;
+
     function fetchSet() {
         fetch("//localhost:1337/api/segnalibros")
             .then((res) => res.json())
@@ -22,7 +33,7 @@ export function YoutubeNews() {
         e.stopPropagation()
         if (type === "DELETE") {
             fetch(`//localhost:1337/api/segnalibros/${segnalibro.id}`, { method: "DELETE" })
-                .then(setTimeout(fetchSet, 20))
+                .then(setTimeout(fetchSet, 30))
             return
         }
         fetch("//localhost:1337/api/segnalibros", {
@@ -49,14 +60,14 @@ export function YoutubeNews() {
 
     return (
         <div className="max-w-5xl relative md:max-w-3xl 2xl:max-w-5xl flex flex-col items-center my-7 h-[55rem] glass-component">
-            <div className="w-[90%] first-line:pb-2 flex justify-center flex-wrap gap-2 static sm:fixed">
-                <button onClick={toggle} className="btn">SEGNALIBRI</button>
+            <div className="first-line:pb-2 flex justify-center flex-wrap gap-2 static sm:fixed">
+                <button onClick={toggle} className="btn mb-4">SEGNALIBRI</button>
             </div>
             {modal &&
-                <div className="h-auto z-10 absolute top-0 flex justify-start flex-col glass-component glass-opaco overflow-y-scroll" onClick={toggle}>
+                <div className="h-full z-10 absolute top-0 flex justify-start flex-col glass-component glass-opaco overflow-y-scroll" onClick={toggle}>
                     <FaWindowClose className="absolute right-0 top-0 p-1 w-8 h-8 cursor-pointer hover:opacity-50" onClick={toggle} />
                     {segnalibri && segnalibri.map(segnalibro =>
-                        <RigaSegnalibri getData={getData} saved={false} key={segnalibro.attributes.Titolo} el={segnalibro} />
+                        <RigaSegnalibri getData={getData} isMobile={isMobile} saved={false} key={segnalibro.attributes.Titolo} el={segnalibro} />
                     )}
                 </div>
             }
@@ -66,7 +77,7 @@ export function YoutubeNews() {
                     if (segnalibri.some(e => e.attributes.Titolo === el.snippet.title)) {
                         return <Riga saved={true} key={index} el={el} />
                     }
-                    return <Riga getData={getData} fetchSet={fetchSet} saved={false} key={el.snippet.title} el={el} />
+                    return <Riga getData={getData} isMobile={isMobile} fetchSet={fetchSet} saved={false} key={el.snippet.title} el={el} />
                 })}
             </div>
         </div>
