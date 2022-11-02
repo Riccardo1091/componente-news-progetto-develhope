@@ -20,6 +20,7 @@ export function YoutubeNews() {
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange)
         return () => { window.removeEventListener('resize', handleWindowSizeChange) }
+
     }, []);
     const isMobile = width <= 768;
 
@@ -33,7 +34,7 @@ export function YoutubeNews() {
         e.stopPropagation()
         if (type === "DELETE") {
             fetch(`//localhost:1337/api/segnalibros/${segnalibro.id}`, { method: "DELETE" })
-                .then(setTimeout(fetchSet, 30))
+                .then(setTimeout(fetchSet, 300))
             return
         }
         fetch("//localhost:1337/api/segnalibros", {
@@ -43,7 +44,7 @@ export function YoutubeNews() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ data: segnalibro })
-        }).then(fetchSet())
+        }).then(setTimeout(fetchSet, 300))
     }
 
     useEffect(() => {
@@ -60,9 +61,9 @@ export function YoutubeNews() {
 
     return (
         <div className="max-w-5xl relative md:max-w-3xl 2xl:max-w-5xl flex flex-col items-center my-7 h-[55rem] glass-component">
-            <div className="first-line:pb-2 flex justify-center flex-wrap gap-2 static sm:fixed">
+            {segnalibri && <div className="first-line:pb-2 flex justify-center flex-wrap gap-2 static">
                 <button onClick={toggle} className="btn mb-4">SEGNALIBRI</button>
-            </div>
+            </div>}
             {modal &&
                 <div className="h-full z-10 absolute top-0 flex justify-start flex-col glass-component glass-opaco overflow-y-scroll" onClick={toggle}>
                     <FaWindowClose className="absolute right-0 top-0 p-1 w-8 h-8 cursor-pointer hover:opacity-50" onClick={toggle} />
@@ -71,7 +72,7 @@ export function YoutubeNews() {
                     )}
                 </div>
             }
-            <div className='w-full sm:mt-16 overflow-y-scroll h-full'>
+            <div className='w-full sm:mt-2 overflow-y-scroll h-full'>
                 {data && data.items.map((el, index) => {
                     //if (segnalibri.map(e => e.attributes.Titolo).indexOf(el.snippet.title) !== -1) {
                     if (segnalibri.some(e => e.attributes.Titolo === el.snippet.title)) {

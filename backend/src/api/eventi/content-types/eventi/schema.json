@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eventis",
+  "info": {
+    "singularName": "eventi",
+    "pluralName": "eventis",
+    "displayName": "Eventi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titolo": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "text"
+    },
+    "data": {
+      "type": "date"
+    }
+  }
+}
