@@ -40,9 +40,14 @@ newspapers.forEach(newspaper => {
                     })
                     break;
                 case 'multiplayer':
-                    $('div.media').each((i, el) => {
-                        const pre_thumbnail = $(el).find('img').attr('data-src')
-                        const thumbnail = `${pre_thumbnail.split("g_")[0]}g_190x130_crop_upscale_q85.jpg`
+                    $("div.media").each((i, el) => {
+                        const pre_thumbnail = $(el).find("img").attr("data-src");
+                        let thumbnail = "";
+                        if (pre_thumbnail.includes('jpeg_')) {
+                          thumbnail = `${pre_thumbnail.split("jpeg_")[0]}jpeg_190x130_crop_upscale_q85.jpg`;
+                        } if (pre_thumbnail.includes('jpg_')) {
+                          thumbnail = `${pre_thumbnail.split("jpg_")[0]}jpg_190x130_crop_upscale_q85.jpg`;
+                        }
                         const title = $(el).find('.media-body a').text().trim()
                         const subtitle = $(el).find('.media-body > p').text()
                         const url = $(el).find('a').attr('href')
