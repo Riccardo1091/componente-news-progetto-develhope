@@ -20,7 +20,9 @@ Di seguito le istruzioni per installare le dipende dell'app React, del backend s
 ```sh
   npm run develop
   ```
-4. Avviare l'app react dalla root con il seguente comando:
+4. Accedere al pannello di Strapi dopo aver registrato un account da <a href="http://localhost:1337/admin/settings/users-permissions/roles/2">http://localhost:1337/admin/settings/users-permissions/roles/2</a> ed impostare come attivi i permessi per "Segnalibro" nella sezione "Permissions"
+
+5. Avviare l'app react dalla root con il seguente comando:
 ```sh
   npm start
   ```
